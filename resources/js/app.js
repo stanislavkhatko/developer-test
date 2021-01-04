@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import CSVGenerator from "./components/CSVGenerator";
+
 require('./bootstrap');
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
@@ -16,6 +18,11 @@ window.Vue = require('vue');
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
+
+
+// Register a component globally.
+Vue.component('c-s-v-generator', CSVGenerator);
+
 
 
 /**
