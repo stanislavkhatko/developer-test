@@ -9,10 +9,9 @@ class CsvExport extends Controller {
      */
     public function convert(\Illuminate\Http\Request $request)
     {
-        dd($request->all());
         $callback = function() use ($request) {
             $file = fopen('php://output', 'w');
-            fputcsv($file, count($request->all()) ? array_keys($request->all()[0]) : []);
+            fputcsv($file, count($request->all()) ? array_keys(array_merge(...$request->all())) : []);
 
             foreach ($request->all() as $row) {
                 fputcsv($file, $row);

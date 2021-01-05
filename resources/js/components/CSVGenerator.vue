@@ -111,16 +111,17 @@ export default {
 
             this.data.forEach(
                 (row) => {
-                    if (row[oldKey]) {
+                    if (row.hasOwnProperty(oldKey)) {
                         row[column.key] = row[oldKey];
                         delete row[oldKey];
+                    } else {
+                        row[column.key] = '';
                     }
                 }
             )
         },
 
         submit() {
-            // TODO add all titles validation (if needed)
             return axios.patch('/api/csv-export', this.data).then(response => {
                 if (response.data) {
                     let blob = new Blob([response.data], {type: 'text/csv'});
